@@ -21,5 +21,19 @@ namespace StokTakipSistemi
         {
             ProductForm frm = new ProductForm(); frm.MdiParent = this; frm.Show();
         }
+
+        private void müşteriYönetimiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CustomerForm frm = new CustomerForm();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void raporlarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReportForm frm = new ReportForm();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }

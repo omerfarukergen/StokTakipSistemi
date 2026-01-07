@@ -48,7 +48,7 @@
             this.çıkışToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -64,6 +64,7 @@
             this.müşteriYönetimiToolStripMenuItem.Name = "müşteriYönetimiToolStripMenuItem";
             this.müşteriYönetimiToolStripMenuItem.Size = new System.Drawing.Size(134, 24);
             this.müşteriYönetimiToolStripMenuItem.Text = "Müşteri Yönetimi";
+            this.müşteriYönetimiToolStripMenuItem.Click += new System.EventHandler(this.müşteriYönetimiToolStripMenuItem_Click);
             // 
             // satışEkranıToolStripMenuItem
             // 
@@ -74,8 +75,9 @@
             // raporlarToolStripMenuItem
             // 
             this.raporlarToolStripMenuItem.Name = "raporlarToolStripMenuItem";
-            this.raporlarToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
+            this.raporlarToolStripMenuItem.Size = new System.Drawing.Size(80, 26);
             this.raporlarToolStripMenuItem.Text = "Raporlar";
+            this.raporlarToolStripMenuItem.Click += new System.EventHandler(this.raporlarToolStripMenuItem_Click);
             // 
             // çıkışToolStripMenuItem
             // 
