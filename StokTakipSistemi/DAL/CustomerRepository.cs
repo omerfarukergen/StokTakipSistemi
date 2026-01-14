@@ -26,7 +26,8 @@ namespace StokTakipSistemi.DAL
                             Id = Convert.ToInt32(reader["Id"]),
                             FullName = reader["FullName"].ToString(),
                             CustomerType = reader["CustomerType"].ToString(),
-                            Phone = reader["Phone"].ToString()
+                            Phone = reader["Phone"].ToString(),
+                            Address = reader["Address"].ToString() // ADRES BURAYA EKLENDİ
                         });
                     }
                 }
@@ -38,11 +39,13 @@ namespace StokTakipSistemi.DAL
         {
             using (var conn = db.GetConnection())
             {
-                string query = "INSERT INTO Customers (FullName, CustomerType, Phone) VALUES (@name, @type, @phone)";
+                // INSERT sorgusuna Address eklendi
+                string query = "INSERT INTO Customers (FullName, CustomerType, Phone, Address) VALUES (@name, @type, @phone, @address)";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@name", entity.FullName);
                 cmd.Parameters.AddWithValue("@type", entity.CustomerType);
                 cmd.Parameters.AddWithValue("@phone", entity.Phone);
+                cmd.Parameters.AddWithValue("@address", entity.Address); // ADRES PARAMETRESİ
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -52,11 +55,13 @@ namespace StokTakipSistemi.DAL
         {
             using (var conn = db.GetConnection())
             {
-                string query = "UPDATE Customers SET FullName=@name, CustomerType=@type, Phone=@phone WHERE Id=@id";
+                // UPDATE sorgusuna Address eklendi
+                string query = "UPDATE Customers SET FullName=@name, CustomerType=@type, Phone=@phone, Address=@address WHERE Id=@id";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@name", entity.FullName);
                 cmd.Parameters.AddWithValue("@type", entity.CustomerType);
                 cmd.Parameters.AddWithValue("@phone", entity.Phone);
+                cmd.Parameters.AddWithValue("@address", entity.Address); // ADRES PARAMETRESİ
                 cmd.Parameters.AddWithValue("@id", entity.Id);
                 conn.Open();
                 cmd.ExecuteNonQuery();

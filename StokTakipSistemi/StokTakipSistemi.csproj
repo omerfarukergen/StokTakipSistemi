@@ -96,7 +96,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\CustomerManager.cs" />
+    <Compile Include="BLL\LoginManager.cs" />
     <Compile Include="BLL\ProductManager.cs" />
+    <Compile Include="BLL\SalesManager.cs" />
     <Compile Include="BLL\UserManager.cs" />
     <Compile Include="CustomerForm.cs">
       <SubType>Form</SubType>

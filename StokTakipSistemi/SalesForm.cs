@@ -22,34 +22,105 @@ namespace StokTakipSistemi
         {
             InitializeComponent();
             LoadCombos();
+            SatisListele();
         }
         void LoadCombos()
         {
-            cmbProducts.DataSource = _pMgr.GetAllProducts();
-            cmbProducts.DisplayMember = "ProductName";
-            cmbProducts.ValueMember = "Id";
+            // Ürünler
+            var urunler = _pMgr.GetAllProducts();
+            cmbProducts.DataSource = urunler;
+            cmbProducts.DisplayMember = "ProductName"; // Ekranda görünecek isim (Property ismiyle aynı olmalı)
+            cmbProducts.ValueMember = "Id";            // Arka planda tutulacak ID
 
-            cmbCustomers.DataSource = _cMgr.GetList();
-            cmbCustomers.DisplayMember = "FullName";
-            cmbCustomers.ValueMember = "Id";
+            // Müşteriler
+            var musteriler = _cMgr.GetList();
+            cmbCustomers.DataSource = musteriler;
+            cmbCustomers.DisplayMember = "FullName";   // Ekranda görünecek isim
+            cmbCustomers.ValueMember = "Id";           // Arka planda tutulacak ID
         }
         private void btnSell_Click(object sender, EventArgs e)
         {
-            var seciliUrun = (Product)cmbProducts.SelectedItem;
-
-            var yeniSatis = new Sale
+            if (cmbProducts.SelectedValue == null || cmbCustomers.SelectedValue == null)
             {
-                ProductId = (int)cmbProducts.SelectedValue,
-                CustomerId = (int)cmbCustomers.SelectedValue,
+                MessageBox.Show("Lütfen ürün ve müşteri seçiniz!");
+                return;
+            }
+
+            var yeniSatis = new StokTakipSistemi.DOMAIN.Sale
+            {
+                // SelectedValue kullanarak doğrudan ID'yi alıyoruz
+                ProductId = Convert.ToInt32(cmbProducts.SelectedValue),
+                CustomerId = Convert.ToInt32(cmbCustomers.SelectedValue),
                 Quantity = (int)nmQuantity.Value,
-                TotalPrice = seciliUrun.Price * nmQuantity.Value,
+                TotalPrice = 0, // Manager içinde hesaplatabilirsin veya buraya fiyat ekle
                 SaleDate = DateTime.Now
             };
 
             _sRepo.MakeSale(yeniSatis);
-            MessageBox.Show($"Satış Başarılı! Toplam Tutar: {yeniSatis.TotalPrice}");
-        
-    }
+            MessageBox.Show("Satış başarılı!");
+            SatisListele(); // Tabloyu yenilemek için
+            LoadCombos();   // ComboBox'ı yenilemek için
+        }
+
+        void SatisListele()
+        {
+            var satislar = _sRepo.GetAllSales();
+
+            dgvSales.DataSource = null;
+            dgvSales.AutoGenerateColumns = true; // Sütunları sistem kendisi yaratsın
+            dgvSales.DataSource = satislar;
+
+            // RENK AYARI BURADA KANKA:
+            dgvSales.DefaultCellStyle.ForeColor = Color.Black; // Yazı rengi siyah
+            dgvSales.DefaultCellStyle.BackColor = Color.White; // Arka plan beyaz
+            dgvSales.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black; // Başlık yazı rengi
+
+            dgvSales.Refresh(); // Tabloyu zorla yenile
+        }
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SalesForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvSales_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSell_Click_1(object sender, EventArgs e)
+        {
+            if (cmbProducts.SelectedValue == null || cmbCustomers.SelectedValue == null)
+            {
+                MessageBox.Show("Lütfen ürün ve müşteri seçiniz!");
+                return;
+            }
+
+            var yeniSatis = new StokTakipSistemi.DOMAIN.Sale
+            {
+                // SelectedValue kullanarak doğrudan ID'yi alıyoruz
+                ProductId = Convert.ToInt32(cmbProducts.SelectedValue),
+                CustomerId = Convert.ToInt32(cmbCustomers.SelectedValue),
+                Quantity = (int)nmQuantity.Value,
+                TotalPrice = 0, // Manager içinde hesaplatabilirsin veya buraya fiyat ekle
+                SaleDate = DateTime.Now
+            };
+
+            _sRepo.MakeSale(yeniSatis);
+            MessageBox.Show("Satış başarılı!");
+            SatisListele(); // Tabloyu yenilemek için
+            LoadCombos();   // ComboBox'ı yenilemek için
+        }
     }
 }
+
 

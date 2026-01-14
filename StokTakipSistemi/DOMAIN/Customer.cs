@@ -11,5 +11,6 @@ namespace StokTakipSistemi.DOMAIN
         public string FullName { get; set; }
         public string CustomerType { get; set; } // Perakende veya Toptan
         public string Phone { get; set; }
+        public string Address { get; set; }
     }
 }
