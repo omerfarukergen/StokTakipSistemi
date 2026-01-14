@@ -190,5 +190,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="Screenshots\login.png" />
+    <Content Include="Screenshots\müşteri.png" />
+    <Content Include="Screenshots\satış.png" />
+    <Content Include="Screenshots\rapor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Screenshots\ürünyönetimi.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
