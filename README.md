@@ -44,4 +44,4 @@ ALTER TABLE Products ADD COLUMN CreatedDate DATETIME DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE Customers ADD COLUMN Address VARCHAR(250);
 Bağlantı Ayarları: DAL/DbConnection.cs dosyasındaki Connection String'i kendi sunucu bilgilerinizle güncelleyin.
 Çalıştırın: Visual Studio üzerinden F5 ile projeyi başlatın
-<img src=".[/resim.jpg](https://github.com/omerfarukergen/StokTakipSistemi/blob/master/StokTakipSistemi/Screenshots/login.png)" width="300" height="auto">
+![Login Ekranı](https://github.com/omerfarukergen/StokTakipSistemi/blob/master/StokTakipSistemi/Screenshots/login.png?raw=true)
